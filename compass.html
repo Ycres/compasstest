@@ -44,15 +44,13 @@
 	</style>
 </head>
 <body>
-	<div>
+	<div id="div">
 		<span id="N">N</span>
 		<img src="compass.png" id="arrow"/>
 		<span id="S">S</span>
 	</div>
 	<script>
-	var N = document.getElementById('N');
-	var S = document.getElementById('S');
-
+	var div = document.getElementById('div')
 	if(window.DeviceOrientationEvent)
 	{
 		window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
@@ -63,12 +61,12 @@
     }
 	function DeviceOrientationHandler(event) 
 	{
-    	alpha = event.alpha; //Z轴方向var beta = event.beta,//X轴方向
-        gamma = event.gamma;//Y轴方向if (alpha != null) {
-        arrow.style.webkitTransform = "rotate(" + alpha + "deg)";//箭头旋转
-        N.style.webkitTransform = "rotate(" + alpha + "deg)";
-        S.style.webkitTransform = "rotate(" + alpha + "deg)";
-        alert(alpha);
+    	var alpha = event.alpha; //Z轴方向
+    	var beta = event.beta,//X轴方向
+        var gamma = event.gamma;//Y轴方向
+        if (alpha != null) {
+        	div.style.webkitTransform = "rotate(" + alpha + "deg)";
+        }
     }
 
 	</script>
