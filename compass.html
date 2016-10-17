@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>compass</title>
+	<style>
+	div
+	{
+		width: 200px;
+		height: 200px;
+		border-radius: 100px;
+		border:1px solid black;
+		text-align: center;
+		position: relative;
+	}
+	img
+	{
+		position: absolute;
+		left: 10%;
+		top:10%;
+		width: 80%;
+		height: 80%;
+	}
+	#N
+	{
+		display: block;
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+		left: calc(50% - 10px);
+		top: 0;
+	}
+	#S
+	{
+		display: block;
+		position: absolute;
+		left: calc(50% - 10px);
+		bottom: 0;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<span id="N">N</span>
+		<img src="compass.png" id="arrow"/>
+		<span id="S">S</span>
+	</div>
+	<script>
+	var N = document.getElementById('N');
+	var S = document.getElementById('S');
+
+	if(window.DeviceOrientationEvent)
+	{
+		window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
+	}
+	else
+	{
+    	alert("您的浏览器不支持DeviceOrientation");
+    }
+	function DeviceOrientationHandler(event) 
+	{
+    	alpha = event.alpha; //Z轴方向var beta = event.beta,//X轴方向
+        gamma = event.gamma;//Y轴方向if (alpha != null) {
+        arrow.style.webkitTransform = "rotate(" + alpha + "deg)";//箭头旋转
+        N.style.webkitTransform = "rotate(" + alpha + "deg)";
+        S.style.webkitTransform = "rotate(" + alpha + "deg)";
+        alert(alpha);
+    }
+
+	</script>
+</body>
+</html>
